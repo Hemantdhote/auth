@@ -7,23 +7,18 @@ const Register = ({setcurrentPage}) => {
   const [password, setpassword] = useState("");
 
 
-  const submitHandler=(e)=>{
-    e.preventDefault();
-    
+  const registerHandler=()=>{
     const user={name,email,password};
     console.log(user);
     localStorage.setItem("user",JSON.stringify(user));
     alert("user register successfully ! please log in")
-    setcurrentPage("Login")
-    
-    
+    setcurrentPage("login")
   }
-
 
   return (
     <div>
       <div className=" h-screen w-full  flex items-center justify-center">
-        <form onSubmit={submitHandler} className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
           <h1 className="text-xl font-bold mb-2 text-green-700">
             Register User :
           </h1>
@@ -51,10 +46,10 @@ const Register = ({setcurrentPage}) => {
             type="password"
             placeholder="Enter the password"
           />
-          <button className="px-2 py-1 bg-green-500 text-white rounded-md outline-none w-60">
+          <button onClick={registerHandler} className="px-2 py-1 bg-green-500 text-white rounded-md outline-none w-60">
             Register
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
