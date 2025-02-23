@@ -1,25 +1,53 @@
-import React from "react";
+import React,{useState} from "react";
+import Login from "./Login";
 
-const Register = () => {
+const Register = ({setcurrentPage}) => {
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+
+
+  const submitHandler=(e)=>{
+    e.preventDefault();
+    
+    const user={name,email,password};
+    console.log(user);
+    localStorage.setItem("user",JSON.stringify(user));
+    alert("user register successfully ! please log in")
+    setcurrentPage("Login")
+    
+    
+  }
+
+
   return (
     <div>
       <div className=" h-screen w-full  flex items-center justify-center">
-        <form className="flex flex-col gap-3">
+        <form onSubmit={submitHandler} className="flex flex-col gap-3">
           <h1 className="text-xl font-bold mb-2 text-green-700">
             Register User :
           </h1>
           <input
-            className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
+
+          value={name}
+          onInput={(e)=>setname(e.target.value)} 
+          className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
             type="text"
             placeholder="Enter your name"
           />
           <input
-            className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
+
+          value={email}
+          onInput={(e)=>setemail(e.target.value)} 
+          className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
             type="text"
             placeholder="Enter your email"
           />
           <input
-            className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
+
+          value={password}
+          onInput={(e)=>setpassword(e.target.value)} 
+          className="px-2 py-1 bg-neutral-300 rounded-md outline-none w-60"
             type="password"
             placeholder="Enter the password"
           />
